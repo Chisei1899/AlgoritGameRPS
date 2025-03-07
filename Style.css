@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.choice {
+    padding: 10px 20px;
+    font-size: 20px;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid black;
+    background-color: lightgray;
+}
+
+.choice:hover {
+    background-color: #ddd;
+}
+
+h2 {
+    margin-top: 20px;
+    color: darkblue;
+}
+
+p {
+    font-size: 18px;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
