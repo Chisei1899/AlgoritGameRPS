@@ -1,3 +1,4 @@
+<?php include 'session_check.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,15 +9,21 @@
 </head>
 <body>
     <h1>HOMEPAGE</h1>
+    <p>Welcome, <?php echo $_SESSION['username']; ?>!</p>
 
     <div class="choices">
-        <a href="BRPS.html">
+        <a href="BRPS.php">
             <button class="choice">Basic Rock Paper Scissors</button>
         </a>
 
-        <a href="ERPS.html">
-        <button class="choice">Enhanced Rock Paper Scissors</button>
+        <a href="ERPS.php">
+            <button class="choice">Enhanced Rock Paper Scissors</button>
         </a>
     </div>
+
+    <br>
+    <a href="logout.php">
+        <button class="logout">Logout</button>
+    </a>
 </body>
 </html>

@@ -1,4 +1,6 @@
 <?php
+session_start(); // Start session
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -9,7 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     while (($data = fgetcsv($file)) !== FALSE) {
         if ($data[0] == $username && $data[1] == $password) {
             fclose($file);
-            echo "<script>alert('Login successful!'); window.location.href='HomePage.html';</script>";
+            
+            // Store username in session
+            $_SESSION['username'] = $username;
+            
+            // Redirect to HomePage.php
+            header("Location: HomePage.php");
             exit();
         }
     }
