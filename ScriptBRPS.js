@@ -8,47 +8,55 @@ const difficultyDisplay = document.querySelector("#difficulty-display");
 const roundNumberText = document.querySelector("#round-number");
 const playerScoreText = document.querySelector("#player-score");
 const computerScoreText = document.querySelector("#computer-score");
+const drawCountText = document.querySelector("#draw-count");
+const restartButton = document.querySelector("#restart-button");
 
 let playerHistory = { Rock: 0, Paper: 0, Scissors: 0 };
 let round = 1;
 let playerScore = 0;
 let computerScore = 0;
+let drawCount = 0;
 
-// Function to determine difficulty based on round number
+const MEDIUM_SMART_CHANCE = 0.2;
+const HARD_SMART_CHANCE = 0.3;
+
 function getCurrentDifficulty() {
     if (round <= 10) return "Easy";
     if (round <= 20) return "Medium";
     return "Hard";
 }
 
-// Function to update difficulty display
 function updateDifficultyDisplay() {
     difficultyDisplay.textContent = getCurrentDifficulty();
 }
 
-// Function to get computer choice based on difficulty
 function getComputerChoice(playerChoice) {
-    let difficulty = getCurrentDifficulty();
+    const difficulty = getCurrentDifficulty();
+    const counterMoves = { Rock: "Paper", Paper: "Scissors", Scissors: "Rock" };
 
     if (difficulty === "Easy") {
         return choices[Math.floor(Math.random() * choices.length)];
     }
 
     if (difficulty === "Medium") {
-        const counterMoves = { Rock: "Paper", Paper: "Scissors", Scissors: "Rock" };
-        return Math.random() < 0.2 ? counterMoves[playerChoice] : choices[Math.floor(Math.random() * choices.length)];
+        return Math.random() < MEDIUM_SMART_CHANCE
+            ? counterMoves[playerChoice]
+            : choices[Math.floor(Math.random() * choices.length)];
     }
 
     if (difficulty === "Hard") {
-        let mostUsedMove = Object.keys(playerHistory).reduce((a, b) => playerHistory[a] > playerHistory[b] ? a : b);
-        const counterMoves = { Rock: "Paper", Paper: "Scissors", Scissors: "Rock" };
-        return Math.random() < 0.3 ? counterMoves[mostUsedMove] : choices[Math.floor(Math.random() * choices.length)];
+        const mostUsedMove = Object.keys(playerHistory).reduce((a, b) =>
+            playerHistory[a] > playerHistory[b] ? a : b
+        );
+        return Math.random() < HARD_SMART_CHANCE
+            ? counterMoves[mostUsedMove]
+            : choices[Math.floor(Math.random() * choices.length)];
     }
 }
 
-// Function to determine the winner
 function determineWinner(player, computer) {
     if (player === computer) {
+        drawCount++;
         return "It's a Draw!";
     }
     if (
@@ -63,30 +71,49 @@ function determineWinner(player, computer) {
     return "Computer Wins!";
 }
 
-// Event Listeners (for player choice)
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         const playerChoice = button.dataset.choice;
         playerHistory[playerChoice]++;
         const computerChoice = getComputerChoice(playerChoice);
 
-        // Update UI
+        const winner = determineWinner(playerChoice, computerChoice);
+
         playerChoiceText.textContent = playerChoice;
         computerChoiceText.textContent = computerChoice;
-        const winner = determineWinner(playerChoice, computerChoice);
         winnerText.textContent = winner;
         resultText.textContent = `You chose ${playerChoice}. Computer chose ${computerChoice}.`;
 
-        // Update round, difficulty, and scores
-        round++;
-        roundNumberText.textContent = round;
-        updateDifficultyDisplay();
-
-        // Update score display
         playerScoreText.textContent = playerScore;
         computerScoreText.textContent = computerScore;
+        drawCountText.textContent = drawCount;
+
+        roundNumberText.textContent = round;
+        round++;
+        updateDifficultyDisplay();
     });
 });
 
-// Initialize difficulty display
+// Restart Game
+restartButton.addEventListener("click", () => {
+    round = 1;
+    playerScore = 0;
+    computerScore = 0;
+    drawCount = 0;
+    playerHistory = { Rock: 0, Paper: 0, Scissors: 0 };
+
+    playerChoiceText.textContent = "?";
+    computerChoiceText.textContent = "?";
+    winnerText.textContent = "?";
+    resultText.textContent = "Make your choice!";
+
+    playerScoreText.textContent = "0";
+    computerScoreText.textContent = "0";
+    drawCountText.textContent = "0";
+    roundNumberText.textContent = "1";
+
+    updateDifficultyDisplay();
+});
+
+// Initial difficulty display
 updateDifficultyDisplay();

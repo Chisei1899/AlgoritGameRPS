@@ -8,18 +8,22 @@
     <link rel="stylesheet" href="Style.css">
 </head>
 <body>
-    <h1>HOMEPAGE</h1>
-    <p>Welcome, <?php echo $_SESSION['username']; ?>!</p>
+    <h1>Welcome to Rock, Paper, Scissors, Lizard, Spock (From the Hit Series The Big Bang Theory)</h1>
+    <p>Welcome player <?php echo $_SESSION['username']; ?>!</p>
 
     <div class="choices">
         <a href="BRPS.php">
-            <button class="choice">Basic Rock Paper Scissors</button>
+            <button class="choice">Play Rock Paper Scissors</button>
         </a>
 
         <a href="ERPS.php">
-            <button class="choice">Enhanced Rock Paper Scissors</button>
+            <button class="choice">Play Rock, Paper, Scissors, Lizard, Spock</button>
         </a>
     </div>
+
+    <a href="ChangeUsername.php">
+    <button class="choice">Change Username</button>
+    </a>
 
     <br>
     <a href="logout.php">
