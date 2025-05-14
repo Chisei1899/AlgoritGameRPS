@@ -1,17 +1,20 @@
-const choices = ["Rock", "Paper", "Scissors"];
+const choices = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 const buttons = document.querySelectorAll(".choice");
 const resultText = document.querySelector("#result");
 const playerChoiceText = document.querySelector("#player-choice");
 const computerChoiceText = document.querySelector("#computer-choice");
 const winnerText = document.querySelector("#winner");
-const difficultyDisplay = document.querySelector("#difficulty-display");
 const roundNumberText = document.querySelector("#round-number");
 const playerScoreText = document.querySelector("#player-score");
 const computerScoreText = document.querySelector("#computer-score");
 const drawCountText = document.querySelector("#draw-count");
 const restartButton = document.querySelector("#restart-button");
+const difficultySelect = document.querySelector("#difficulty-select");
 
-let playerHistory = { Rock: 0, Paper: 0, Scissors: 0 };
+const clickSound = new Audio("audio/choiceselect.mp3");
+clickSound.volume = 0.2;
+
+let playerHistory = { Rock: 0, Paper: 0, Scissors: 0, Lizard: 0, Spock: 0 };
 let round = 1;
 let playerScore = 0;
 let computerScore = 0;
@@ -21,18 +24,18 @@ const MEDIUM_SMART_CHANCE = 0.2;
 const HARD_SMART_CHANCE = 0.3;
 
 function getCurrentDifficulty() {
-    if (round <= 10) return "Easy";
-    if (round <= 20) return "Medium";
-    return "Hard";
-}
-
-function updateDifficultyDisplay() {
-    difficultyDisplay.textContent = getCurrentDifficulty();
+    return difficultySelect.value;
 }
 
 function getComputerChoice(playerChoice) {
     const difficulty = getCurrentDifficulty();
-    const counterMoves = { Rock: "Paper", Paper: "Scissors", Scissors: "Rock" };
+    const counterMoves = {
+        "Rock": ["Paper", "Spock"],
+        "Paper": ["Scissors", "Lizard"],
+        "Scissors": ["Rock", "Spock"],
+        "Lizard": ["Rock", "Scissors"],
+        "Spock": ["Lizard", "Paper"]
+    };
 
     if (difficulty === "Easy") {
         return choices[Math.floor(Math.random() * choices.length)];
@@ -40,7 +43,7 @@ function getComputerChoice(playerChoice) {
 
     if (difficulty === "Medium") {
         return Math.random() < MEDIUM_SMART_CHANCE
-            ? counterMoves[playerChoice]
+            ? counterMoves[playerChoice][Math.floor(Math.random() * 2)]
             : choices[Math.floor(Math.random() * choices.length)];
     }
 
@@ -49,7 +52,7 @@ function getComputerChoice(playerChoice) {
             playerHistory[a] > playerHistory[b] ? a : b
         );
         return Math.random() < HARD_SMART_CHANCE
-            ? counterMoves[mostUsedMove]
+            ? counterMoves[mostUsedMove][Math.floor(Math.random() * 2)]
             : choices[Math.floor(Math.random() * choices.length)];
     }
 }
@@ -60,9 +63,11 @@ function determineWinner(player, computer) {
         return "It's a Draw!";
     }
     if (
-        (player === "Rock" && computer === "Scissors") ||
-        (player === "Paper" && computer === "Rock") ||
-        (player === "Scissors" && computer === "Paper")
+        (player === "Rock" && (computer === "Scissors" || computer === "Lizard")) ||
+        (player === "Paper" && (computer === "Rock" || computer === "Spock")) ||
+        (player === "Scissors" && (computer === "Paper" || computer === "Lizard")) ||
+        (player === "Lizard" && (computer === "Spock" || computer === "Paper")) ||
+        (player === "Spock" && (computer === "Scissors" || computer === "Rock"))
     ) {
         playerScore++;
         return "Player Wins!";
@@ -71,8 +76,20 @@ function determineWinner(player, computer) {
     return "Computer Wins!";
 }
 
+function disableButtons() {
+    buttons.forEach(btn => btn.disabled = true);
+}
+function enableButtons() {
+    buttons.forEach(btn => btn.disabled = false);
+}
+
 buttons.forEach(button => {
     button.addEventListener("click", () => {
+        disableButtons();
+        setTimeout(enableButtons, 500); 
+
+        clickSound.play();
+
         const playerChoice = button.dataset.choice;
         playerHistory[playerChoice]++;
         const computerChoice = getComputerChoice(playerChoice);
@@ -90,17 +107,17 @@ buttons.forEach(button => {
 
         roundNumberText.textContent = round;
         round++;
-        updateDifficultyDisplay();
     });
 });
 
-// Restart Game
 restartButton.addEventListener("click", () => {
+    clickSound.play();
+
     round = 1;
     playerScore = 0;
     computerScore = 0;
     drawCount = 0;
-    playerHistory = { Rock: 0, Paper: 0, Scissors: 0 };
+    playerHistory = { Rock: 0, Paper: 0, Scissors: 0, Lizard: 0, Spock: 0 };
 
     playerChoiceText.textContent = "?";
     computerChoiceText.textContent = "?";
@@ -112,8 +129,5 @@ restartButton.addEventListener("click", () => {
     drawCountText.textContent = "0";
     roundNumberText.textContent = "1";
 
-    updateDifficultyDisplay();
+    difficultySelect.value = "Easy";
 });
-
-// Initial difficulty display
-updateDifficultyDisplay();

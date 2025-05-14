@@ -34,13 +34,13 @@
     <p><strong>Draws: </strong> <span id="draw-count">0</span></p>
 
     <br>
-    <a href="HomePage.php">
+    <a href="home_page.php">
         <button class="back-button">Back to Home</button>
     </a>
 
     <br>
     <button id="restart-button" class="restart-button">Restart Game</button>
 
-    <script src="ScriptERPS.js"></script>
+    <script src="ScriptERPSClassic.js"></script>
 </body>
 </html>

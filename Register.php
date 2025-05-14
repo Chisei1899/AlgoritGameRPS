@@ -4,13 +4,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['newPassword'];
 
     // Open CSV file
-    $file = fopen("users.csv", "a+");
+    $file = fopen("userdata/users.csv", "a+");
 
     // Check if user already exists
     while (($data = fgetcsv($file)) !== FALSE) {
         if ($data[0] == $username) {
             fclose($file);
-            echo "<script>alert('Username already exists!'); window.location.href='Register.html';</script>";
+            echo "<script>alert('Username already exists!'); window.location.href='register.html';</script>";
             exit();
         }
     }

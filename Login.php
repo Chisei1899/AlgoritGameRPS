@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Read the CSV file    
-    $file = fopen("users.csv", "r");
+    $file = fopen("userdata/users.csv", "r");
 
     while (($data = fgetcsv($file)) !== FALSE) {
         if ($data[0] == $username && $data[1] == $password) {
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['username'] = $username;
             
             // Redirect to HomePage.php
-            header("Location: HomePage.php");
+            header("Location: home_page.php");
             exit();
         }
     }

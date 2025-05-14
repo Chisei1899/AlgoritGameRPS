@@ -8,12 +8,12 @@
 </head>
 <body>
     <h2>Change Username</h2>
-    <form action="UpdateUsername.php" method="POST">
+    <form action="update_username.php" method="POST">
         <label for="newUsername">New Username:</label>
         <input type="text" name="newUsername" required>
         <button type="submit">Change Username</button>
     </form>
     <br>
-    <a href="HomePage.php"><button class="back-button">Back to Home</button></a>
+    <a href="home_page.php"><button class="back-button">Back to Home</button></a>
 </body>
 </html>
