@@ -1,0 +1,166 @@
+/* === Fonts === */
+@font-face {
+    font-family: 'Header';
+    src: url('fonts/CherryBombOne-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Text';
+    src: url('fonts/RobotoCondensed-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* === General Page Styling === */
+body {
+    margin: 0;
+    font-family: 'Text', sans-serif;
+    font-size: 18px;
+    background-image: url('images/Background.png');
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: top;
+    color: black;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* === Main Title === */
+h1 {
+    font-family: 'Header', cursive;
+    font-size: 50px;
+    color: indigo;
+    text-align: center;
+    margin: 20px 0 7px;
+    text-shadow: 
+        -3px -3px 0 #fff,
+        3px -3px 0 #fff,
+        -3px 3px 0 #fff,
+        3px 3px 0 #fff; 
+}
+
+.subtitle {
+    font-family: 'Header', cursive;
+    font-size: 35px;
+    color: indigo;
+    margin: 0;
+}
+
+/* === Subtext === */
+p {
+    font-size: 25px;
+    color: black;
+    text-align: center;
+    margin: 6px 0 20px;
+}
+
+/* === Choice Buttons === */
+.choices1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 10px 0;
+}
+
+.choice, .logout {
+    padding: 15px 25px;
+    font-family: 'Text', sans-serif;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+
+}
+
+.choice {
+    background-color: white;
+    color: indigo;
+    border: 3px dashed indigo;
+    font-size: 20px;
+}
+
+.choice:hover{
+    background-color: indigo;
+    color: white;
+}
+
+.choices2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 35px 0 20px;
+}
+
+.choices2 .choice, .logout {
+    background-color: rgb(121, 43, 116);
+    color: white;
+    border: 3px dashed rgb(121, 43, 116);
+    font-size: 17px;
+}
+
+.choices2 .choice:hover, .logout:hover {
+    background-color: white;
+    color: rgb(121, 43, 116);
+}
+    
+/* === Leaderboard Styling === */
+.leaderboards-container {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin: 20px auto;
+}
+
+.leaderboard-wrapper {
+    flex: 1;
+    min-width: 300px;
+    align-content: center;
+}
+
+h2 {
+    text-align: center;
+    align-self: center;
+    font-family: 'Header', cursive;
+    font-size: 32px;
+    color: indigo;
+    margin-bottom: 10px;
+    text-shadow: 
+        -3px -3px 0 #fff,
+        3px -3px 0 #fff,
+        -3px 3px 0 #fff,
+        3px 3px 0 #fff; 
+}
+
+table.leaderboard {
+    width: 95%;
+    max-width: 800px;
+    margin: auto;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.leaderboard th, .leaderboard td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-family: 'Text', sans-serif;
+    font-size: 18px;
+}
+
+.leaderboard th {
+    background-color: indigo;
+    color: white;
+}
+
+.leaderboard tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

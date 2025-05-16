@@ -18,8 +18,10 @@ body.login-page, body.register-page {
     margin: 0;
     font-family: 'Text', sans-serif;
     font-size: 18px;
-    background-image: url(); /* Will add picture later */
-    background-size: contain;
+    background-image: url('images/Background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
     color: #fff;
     height: 100vh;
     display: flex;
@@ -81,9 +83,9 @@ button {
     background-color: indigo;
     font-family: 'Text', sans-serif;
     color: white;
-    border: 2px solid indigo;
+    border: 2px solid rgb(75, 0, 130);
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 22px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: bold;

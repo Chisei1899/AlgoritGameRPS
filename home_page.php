@@ -5,38 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors - HOMEPAGE</title>
-    <link rel="stylesheet" href="Style.css">
-    <style>
-        .leaderboard {
-            margin-top: 30px;
-            border-collapse: collapse;
-            width: 90%;
-            max-width: 800px;
-        }
-        .leaderboard th, .leaderboard td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        .leaderboard th {
-            background-color: #333;
-            color: white;
-        }
-        .leaderboard tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .leaderboard-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    </style>
+    <link rel="stylesheet" href="HomepageStyle.css">
 </head>
 <body>
-    <h1>Welcome to Rock, Paper, Scissors, Lizard, Spock (From the Hit Series The Big Bang Theory)</h1>
-    <p>Welcome player <?php echo $_SESSION['username']; ?>!</p>
+    <h1>WELCOME TO ROCK, PAPER, SCISSORS, LIZARD, SPOCK<br><span class="subtitle">(From the Hit Series The Big Bang Theory)</span></h1>
+    <p><b>Welcome player <?php echo $_SESSION['username']; ?>!</b></p>
 
-    <div class="choices">
+    <div class="choices1">
         <a href="BRPSFreePlay.php">
             <button class="choice">Play Rock Paper Scissors (Free Play)</button>
         </a>
@@ -44,7 +19,9 @@
         <a href="BRPSClassic.php">
             <button class="choice">Play Rock Paper Scissors (Classic)</button>
         </a>
+    </div>
 
+    <div class="choices1">
         <a href="ERPSFreePlay.php">
             <button class="choice">Play Rock, Paper, Scissors, Lizard, Spock (Free Play)</button>
         </a>
@@ -54,7 +31,8 @@
         </a>
     </div>
 
-    <a href="change_username.php">
+    <div class="choices2">
+        <a href="change_username.php">
         <button class="choice">Change Username</button>
     </a>
 
@@ -62,8 +40,10 @@
     <a href="logout.php">
         <button class="logout">Logout</button>
     </a>
+    </div>
 
-    <div class="leaderboard-container">
+    <div class="leaderboards-container">
+    <div class="leaderboard-wrapper">
         <h2>Leaderboard for BRPS</h2>
         <table class="leaderboard">
             <tr>
@@ -73,32 +53,31 @@
                 <th>Draws</th>
                 <th>Player Score</th>
             </tr>
-           <?php
-$file = __DIR__ . '/userdata/userscoresbrps.csv';
-if (file_exists($file)) {
-    $rows = array_map('str_getcsv', file($file));
-    $header = array_shift($rows); // Remove the first row (header)
+            <?php
+            $file = __DIR__ . '/userdata/userscoresbrps.csv';
+            if (file_exists($file)) {
+                $rows = array_map('str_getcsv', file($file));
+                $header = array_shift($rows);
 
-    // Sort by TruePlayerScore (index 4) descending
-    usort($rows, function($a, $b) {
-        return (int)$b[4] <=> (int)$a[4];
-    });
+                usort($rows, function($a, $b) {
+                    return (int)$b[4] <=> (int)$a[4];
+                });
 
-    foreach ($rows as $row) {
-        echo "<tr>";
-        foreach ($row as $cell) {
-            echo "<td>" . htmlspecialchars($cell) . "</td>";
-        }
-        echo "</tr>";
-    }
-} else {
-    echo "<tr><td colspan='5'>No scores available yet.</td></tr>";
-}
-?>
+                foreach ($rows as $row) {
+                    echo "<tr>";
+                    foreach ($row as $cell) {
+                        echo "<td>" . htmlspecialchars($cell) . "</td>";
+                    }
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='5'>No scores available yet.</td></tr>";
+            }
+            ?>
         </table>
     </div>
 
-    <div class="leaderboard-container">
+    <div class="leaderboard-wrapper">
         <h2>Leaderboard for ERPS</h2>
         <table class="leaderboard">
             <tr>
@@ -108,29 +87,29 @@ if (file_exists($file)) {
                 <th>Draws</th>
                 <th>Player Score</th>
             </tr>
-           <?php
-$file = __DIR__ . '/userdata/userscoreserps.csv';
-if (file_exists($file)) {
-    $rows = array_map('str_getcsv', file($file));
-    $header = array_shift($rows); // Remove the first row (header)
+            <?php
+            $file = __DIR__ . '/userdata/userscoreserps.csv';
+            if (file_exists($file)) {
+                $rows = array_map('str_getcsv', file($file));
+                $header = array_shift($rows);
 
-    // Sort by TruePlayerScore (index 4) descending
-    usort($rows, function($a, $b) {
-        return (int)$b[4] <=> (int)$a[4];
-    });
+                usort($rows, function($a, $b) {
+                    return (int)$b[4] <=> (int)$a[4];
+                });
 
-    foreach ($rows as $row) {
-        echo "<tr>";
-        foreach ($row as $cell) {
-            echo "<td>" . htmlspecialchars($cell) . "</td>";
-        }
-        echo "</tr>";
-    }
-} else {
-    echo "<tr><td colspan='5'>No scores available yet.</td></tr>";
-}
-?>
+                foreach ($rows as $row) {
+                    echo "<tr>";
+                    foreach ($row as $cell) {
+                        echo "<td>" . htmlspecialchars($cell) . "</td>";
+                    }
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='5'>No scores available yet.</td></tr>";
+            }
+            ?>
         </table>
     </div>
+</div>
 </body>
 </html>
