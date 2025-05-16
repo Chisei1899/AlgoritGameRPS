@@ -1,0 +1,114 @@
+/* === Fonts === */
+@font-face {
+    font-family: 'Header';
+    src: url('fonts/CherryBombOne-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Text';
+    src: url('fonts/RobotoCondensed-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* === General Page Styling === */
+body.login-page, body.register-page {
+    margin: 0;
+    font-family: 'Text', sans-serif;
+    font-size: 18px;
+    background-image: url(); /* Will add picture later */
+    background-size: contain;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* === Form Container === */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px 30px 30px 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    max-width: 400px;
+    width: 100%;
+    border: 4px dashed indigo;
+}
+
+/* === Headings === */
+h2 {
+    font-family: 'Header', cursive;
+    font-size: 48px;
+    color: indigo;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* === Form Styling === */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    font-weight: 600;
+    color: black;
+}
+
+input {
+    padding: 10px;
+    border: 2px solid indigo;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 15px;
+    background-color: white;
+    font-family: 'Text', sans-serif;
+    color: black;
+    font-size: 16px;
+}
+
+.password, .newPassword {
+    margin-bottom: 50px;
+}
+
+/* === Button Styling === */
+button {
+    padding: 10px;
+    background-color: indigo;
+    font-family: 'Text', sans-serif;
+    color: white;
+    border: 2px solid indigo;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    width: 75%;
+    align-self: center;
+}
+
+button:hover {
+    background-color: white;
+    color: indigo;
+}
+
+/* === Extra Text & Links === */
+p {
+    text-align: center;
+    margin-top: 15px;
+    color: black;
+}
+
+a {
+    color: indigo;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}

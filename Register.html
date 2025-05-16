@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="LoginAndRegisterStyle.css">
 </head>
-<body>
-    <h2>Register</h2>
-    <form id="registerForm" action="register.php" method="POST">
-        <label for="newUsername">Username:</label>
-        <input type="text" name="newUsername" required>
-        <label for="newPassword">Password:</label>
-        <input type="password" name="newPassword" required>
-        <button type="submit">Register</button>
-    </form>
-    <p>Already have an account? <a href="login.html">Login</a></p>
+<body class="register-page">
+    <div class="form-container">
+        <h2>R E G I S T E R</h2>
+        <form id="registerForm" action="register.php" method="POST">
+            <label for="newUsername">Username:</label>
+            <input type="text" name="newUsername" id="newUsername" required>
+            <label for="newPassword">Password:</label>
+            <input type="password" name="newPassword" id="newPassword" class="newPassword" required>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
 </body>
 </html>
