@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors Free Play</title>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="GamePageStyle.css">
 </head>
 
 <body>
-    <h1>Rock, Paper, Scissors!!!</h1>
+    <h1>ROCK, PAPER, SCISSORS (CLASSIC)</h1>
 
     <h3>Current Difficulty: <span id="difficulty-display">Easy</span></h3>
 
@@ -21,23 +21,29 @@
 
     <h2 id="result">Make your choice!</h2>
 
-    <p><strong>Player: </strong><span id="player-choice">?</span></p>
-    <p><strong>Computer: </strong> <span id="computer-choice">?</span></p>
-    <p><strong>Winner: </strong> <span id="winner">?</span></p>
-    <p><strong>Round: </strong> <span id="round-number">1</span></p>
+    <div class="status-container">
+    <div class="status-box">
+        <h3>Game Status</h3>
+        <p>👤 Player: <span id="player-choice">?</span></p>
+        <p>💻 Computer: <span id="computer-choice">?</span></p>
+        <p>🏆 Winner: <span id="winner">?</span></p>
+        <p>🔁 Round: <span id="round-number">1</span></p>
+    </div>
 
-    <h3>Score</h3>
-    <p><strong>Player: </strong> <span id="player-score">0</span></p>
-    <p><strong>Computer: </strong> <span id="computer-score">0</span></p>
-    <p><strong>Draws: </strong> <span id="draw-count">0</span></p>
+    <div class="score-box">
+        <h3>Score</h3>
+        <p>👤 Player: <span id="player-score">0</span></p>
+        <p>💻 Computer: <span id="computer-score">0</span></p>
+        <p>🟰 Draw: <span id="draw-count">0</span></p>
+    </div>
+</div>
 
-    <br>
-    <a href="home_page.php">
-    <button class="back-button">Back to Home</button>
-    </a>
-
-    <br>
-    <button id="restart-button" class="restart-button">Restart Game</button>
+    <div class="button-row">
+        <a href="home_page.php">
+            <button class="back-button">Back to Home</button>
+        </a>
+        <button id="restart-button" class="restart-button">Restart Game</button>
+    </div>
 
     <script src="ScriptBRPSClassic.js"></script>
 </body>

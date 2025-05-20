@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors Free Play</title>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="GamePageStyle.css">
 </head>
 
 <body>
-    <h1>Rock, Paper, Scissors!!!</h1>
+    <h1>ROCK, PAPER, SCISSORS (FREE PLAY)</h1>
 
-    <h3>Select Difficulty:</h3>
-    <select id="difficulty-select">
+    <h3 id="difficulty">Select Difficulty: <select id="difficulty-select">
         <option value="Easy">Easy</option>
         <option value="Medium">Medium</option>
         <option value="Hard">Hard</option>
-    </select>
+    </select></h3>
 
     <div class="choices">
         <button class="choice" data-choice="Rock"><img src="images/Rock.png" alt="Rock"></button>
@@ -26,23 +25,29 @@
 
     <h2 id="result">Make your choice!</h2>
 
-    <p><strong>Player: </strong><span id="player-choice">?</span></p>
-    <p><strong>Computer: </strong> <span id="computer-choice">?</span></p>
-    <p><strong>Winner: </strong> <span id="winner">?</span></p>
+    <div class="status-container">
+    <div class="status-box">
+        <h3>Game Status</h3>
+        <p>👤 Player: <span id="player-choice">?</span></p>
+        <p>💻 Computer: <span id="computer-choice">?</span></p>
+        <p>🏆 Winner: <span id="winner">?</span></p>
+        <p>🔁 Round: <span id="round-number">1</span></p>
+    </div>
 
-    <p><strong>Round: </strong> <span id="round-number">1</span></p>
+    <div class="score-box">
+        <h3>Score</h3>
+        <p>👤 Player: <span id="player-score">0</span></p>
+        <p>💻 Computer: <span id="computer-score">0</span></p>
+        <p>🟰 Draw: <span id="draw-count">0</span></p>
+    </div>
+</div>
 
-    <h3>Score</h3>
-    <p><strong>Player: </strong> <span id="player-score">0</span></p>
-    <p><strong>Computer: </strong> <span id="computer-score">0</span></p>
-
-    <br>
-    <a href="home_page.php">
-    <button class="back-button">Back to Home</button>
-    </a>
-
-    <br>
-    <button id="restart-button" class="restart-button">Restart Game</button>
+    <div class="button-row">
+        <a href="home_page.php">
+            <button class="back-button">Back to Home</button>
+        </a>
+        <button id="restart-button" class="restart-button">Restart Game</button>
+    </div>
 
     <script src="ScriptBRPSFreePlay.js"></script>
 </body>
